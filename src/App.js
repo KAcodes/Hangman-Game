@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+
 import './App.css';
+import {useState} from 'react'
+import Word from './components/Word';
+import {Container} from 'react-bootstrap'
 
 function App() {
+
+ /*  let [totalCountPress, setTotalCountPress] = useState(0);
+  window.addEventListener('keydown', function (e) {
+    
+    setTotalCountPress(totalCountPress + 1)
+    document.querySelector('p').innerHTML = `You pressed ${e.key}`;
+  }, false); */
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      
+      
+      <Container fluid>
+      <Word/>
+      </Container>
+    </>
   );
 }
 

@@ -1,0 +1,10 @@
+each word in dictionary text file will be placed into an array, 
+at start of each game a word will be randomly chosen from this array
+on a word component each letter will be mapped onto a letter component with the letter being a prop, 
+the letter component will contain a div, which has a p tag which if the correct letter is pressed then, letter is revealed 
+if letter is pressed that is not in word then on onscreen keyboard that letter will be highlighted red, and image will be rendered, on each further incorrect press another image will be rendered until man is hung. 
+Could use variable counting number of incorrect guesses, which can be used to dynamically increase image file name on source, so new image is produced each time 
+
+for each correct guess filter out 
+
+if 11 guesses are wrong then game is over and user has lost and can restart the game

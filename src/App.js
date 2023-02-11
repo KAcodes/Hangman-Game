@@ -1,8 +1,10 @@
 
 import './App.css';
-import {useState} from 'react'
-import Word from './components/Word';
-import {Container} from 'react-bootstrap'
+import { Routes, Route } from 'react-router-dom';
+import Hangman from './components/Hangman';
+import Landing from './components/Landing';
+
+
 
 function App() {
 
@@ -15,10 +17,11 @@ function App() {
   return (
     <>
       
+      <Routes>
+          <Route exact path='/' element={<Landing/>}/>
+          <Route path='/game' element={<Hangman/>}/>
+      </Routes>
       
-      <Container fluid>
-      <Word/>
-      </Container>
     </>
   );
 }

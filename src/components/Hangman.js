@@ -1,55 +1,52 @@
 import React, {useState, useEffect} from 'react';
+import { Container ,Row, Col} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Letter from './Letter';
 import MissingLetter from './MissingLetter';
-import { Row, Col, Image} from 'react-bootstrap';
+import Navbar from './Navbar';
 import findWord from './dictionary';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import HangImage from './HangImage';
 
 
+const Hangman = () => {
 
-
-const Word = () => {
-
+    //chosen word
     const [myWord, setMyWord] = useState('');
     useEffect(() => {
         setMyWord(findWord)
-    }, [])
-    //chosen word
+    }, []);
     
-
-    /* const findWord = async() => {
-        const response = await fetch('https://wordsapiv1.p.rapidapi.com/words/hatchback/typeOf')
-
-        const word = response.json()
-    } */
+    const [isGameWon, setIsGameWon] = useState(false);
+    
+    
     //setstate of guesses 
-    const [correctGuesses, setCorrectGuesses] = useState([]);
+    const [correctLetters, setCorrectLetters] = useState([]);
     const [incorrectCount, setIncorrectCount] = useState(0);
+    let correctCount = 0;
     
     
 
     const displayWord = myWord.split('').map((thisLetter, index) => {
-        if(correctGuesses.includes(thisLetter)) {
-            //count++
+        if(correctLetters.includes(thisLetter)) {
+            correctCount++
             return <Letter key={index} letter={thisLetter}/>
         } else {
-            return <MissingLetter/>
+            return <MissingLetter key={index}/>
         }       
     });
 
     useEffect(() => {
-        
-
-    }, [])
+        if (correctCount === displayWord.length && correctCount !== 0) {
+            setIsGameWon(true)
+        }
+    });
     
     const foundLetter = (e) => {
         e.preventDefault();
         const letterPressed = e.target.innerHTML.toLowerCase();
-        console.log(letterPressed)
         if (myWord.split('').includes(letterPressed)) {
-            setCorrectGuesses([...correctGuesses, letterPressed]);
+            setCorrectLetters([...correctLetters, letterPressed]);
             e.target.style.visibility = 'hidden';
             
         }
@@ -59,16 +56,25 @@ const Word = () => {
         }
     }
 
-     
-    
+
 
     const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] 
 
     const displayAlphabet = alphabet.map((letter, index) =>  <Col><button onClick={foundLetter} key={index}>{letter}</button></Col>)
 
-
+    
+    
     return(
-        <>
+        <>  
+        
+        {incorrectCount < 11 ? 
+            <Container fluid>
+            <Row>
+                <Col>
+                    <Navbar/>
+                </Col>
+            </Row>
+            
             <Row>
                 {displayWord}
             </Row>
@@ -77,13 +83,19 @@ const Word = () => {
             </Row>
             <Row>
                 <Col>
-                    <HangImage source={require(`../images/state${incorrectCount + 1}.jpg`)}></HangImage>
+                    <img src={require(`../images/state${incorrectCount + 1}.jpg`)}/>
                 </Col>
             </Row>
             <br></br>
-            <div>Incorrect count = {incorrectCount}</div>
+            <div>Incorrect count = {incorrectCount}</div> 
+            </Container>
+            : <div>Sorry you lost!</div>
+             }
+             {isGameWon && <h1>You Won!</h1>}
+            
+        
         </>
     )
 }
 
-export default Word;
+export default Hangman;

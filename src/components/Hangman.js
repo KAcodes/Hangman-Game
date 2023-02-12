@@ -11,6 +11,13 @@ import findWord from './dictionary';
 
 const Hangman = () => {
 
+
+    /* const [playMode, setPlayMode] = useState('');
+
+    if (playMode === 'playing') {
+        return 'hie'
+    } */
+
     //chosen word
     const [myWord, setMyWord] = useState('');
     useEffect(() => {

@@ -1,7 +1,4 @@
-import React from 'react';
-
-
-
+// both functions change visibility of buttons depending if they are shown or currently hidden
 export const hideButtons = () => {
 
     let alphaButtons = document.querySelectorAll('.alphabetBtn')

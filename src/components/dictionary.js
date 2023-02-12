@@ -1,4 +1,5 @@
 
+//function contains takes all the words in english dictionary and places them into an array in which a randomly selected index is chosen to give a random word, each time function is called
 const findWord = () => {
 
     const dictionary = 
@@ -77439,11 +77440,8 @@ const findWord = () => {
     Zyrian`
 
     const dictionaryArray = dictionary.split('\n');
-
     const randomIndexNumber = Math.floor(Math.random() * dictionaryArray.length);
-
     const randomWord = dictionaryArray[randomIndexNumber];
-
     return randomWord.trim();
 
 }

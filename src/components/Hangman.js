@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { Container ,Row, Col} from 'react-bootstrap';
+import { Container ,Row, Col, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Letter from './Letter';
 import MissingLetter from './MissingLetter';
 import Navbar from './Navbar';
 import findWord from './dictionary';
-
 import { hideButtons, showButtons } from './toggleKeyboard';
 
 
@@ -50,59 +49,52 @@ const Hangman = () => {
     }
 
 
-
     const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-'] 
 
-    const displayAlphabet = alphabet.map((letter, index) =>  <Col><button className='alphabetBtn' onClick={foundLetter} key={index}>{letter}</button></Col>)
+    const displayAlphabet = alphabet.map((letter, index) =>  <Col><Button type='button' className='alphabetBtn m-1 btn-light' onClick={foundLetter} key={index}>{letter}</Button></Col>)
 
     const restart = () => {
         setCorrectLetters([]);
         setIncorrectCount(0);
         setMyWord(findWord);
+        showButtons();
     }
 
     let outcome = <></>;
     if (incorrectCount === 10) {
-        outcome = <><h3>HUNG!</h3><p>Oh no! This time you have lost the game, the correct word was {myWord}. To try again please click on the restart button</p></>
-        
-        hideButtons();
-
-    }
+        outcome = <><h3>HUNG!</h3><h5>Oh no you have lost! The correct word was {myWord}. To try again please click on the restart button.</h5></>
+    };
     if (correctCount === displayWord.length && correctCount !== 0) {
-        outcome = <><h3>You Win!</h3><p>Well done you correctly guessed the word! To try and win again click on the restart button.</p></>
-
+        outcome = <><h3>You Win!</h3><h5>Well done you correctly guessed the word! To try and win again click on the restart button.</h5></>
         hideButtons();
-    }
+    };
     
     
     return(
-            <Container fluid>
+        <Container fluid >
             <Row>
-                <Col>
+                <Col className='m-1'>
+                    <Button variant="dark" onClick={restart}>Restart</Button>
                     <Navbar/>
                 </Col>
+                <h1 className='text-center'>Hangman</h1>
             </Row>
-            <Row>
+            <Row className='text-center my-4'>
                 {displayWord}
             </Row>
-            <Row>
-                {displayAlphabet}
+            <Row className='text-center' >  
+                {displayAlphabet}   
             </Row>
-            <Row>
-                <Col>
+            <Row className='text-center my-2'>
+                <Col md={9}>
                     <img src={require(`../images/state${incorrectCount + 1}.jpg`)} alt='hangman'/>
                     {outcome}
                 </Col>
+                <Col>
+                    <div className='align-middle'>Need Help? Click on Home on the dropdown menu at the top of the page, to see the instructions again.</div> 
+                </Col>
             </Row>
-            <br/>
-            <button onClick={() => {
-                restart();
-                showButtons();
-            }
-        }>Restart</button>
-            <div>Need Help? Click on menu and the Home in the dropdown list at top of the page, to see the instructions again.</div> 
-            
-            </Container>
+        </Container>
     )
 }
 

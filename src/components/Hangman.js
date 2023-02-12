@@ -7,33 +7,23 @@ import MissingLetter from './MissingLetter';
 import Navbar from './Navbar';
 import findWord from './dictionary';
 
+import { hideButtons, showButtons } from './toggleKeyboard';
 
 
 const Hangman = () => {
 
-
-    /* const [playMode, setPlayMode] = useState('');
-
-    if (playMode === 'playing') {
-        return 'hie'
-    } */
-
-    //chosen word
+    //setstate of guesses 
     const [myWord, setMyWord] = useState('');
+    const [correctLetters, setCorrectLetters] = useState([]);
+    const [incorrectCount, setIncorrectCount] = useState(0);
+    let correctCount = 0;
+
     useEffect(() => {
         setMyWord(findWord)
     }, []);
     
-    const [isGameWon, setIsGameWon] = useState(false);
     
     
-    //setstate of guesses 
-    const [correctLetters, setCorrectLetters] = useState([]);
-    const [incorrectCount, setIncorrectCount] = useState(0);
-    let correctCount = 0;
-    
-    
-
     const displayWord = myWord.split('').map((thisLetter, index) => {
         if(correctLetters.includes(thisLetter)) {
             correctCount++
@@ -42,12 +32,8 @@ const Hangman = () => {
             return <MissingLetter key={index}/>
         }       
     });
+    
 
-    useEffect(() => {
-        if (correctCount === displayWord.length && correctCount !== 0) {
-            setIsGameWon(true)
-        }
-    });
     
     const foundLetter = (e) => {
         e.preventDefault();
@@ -65,23 +51,37 @@ const Hangman = () => {
 
 
 
-    const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] 
+    const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-'] 
 
-    const displayAlphabet = alphabet.map((letter, index) =>  <Col><button onClick={foundLetter} key={index}>{letter}</button></Col>)
+    const displayAlphabet = alphabet.map((letter, index) =>  <Col><button className='alphabetBtn' onClick={foundLetter} key={index}>{letter}</button></Col>)
 
+    const restart = () => {
+        setCorrectLetters([]);
+        setIncorrectCount(0);
+        setMyWord(findWord);
+    }
+
+    let outcome = <></>;
+    if (incorrectCount === 10) {
+        outcome = <><h3>HUNG!</h3><p>Oh no! This time you have lost the game, the correct word was {myWord}. To try again please click on the restart button</p></>
+        
+        hideButtons();
+
+    }
+    if (correctCount === displayWord.length && correctCount !== 0) {
+        outcome = <><h3>You Win!</h3><p>Well done you correctly guessed the word! To try and win again click on the restart button.</p></>
+
+        hideButtons();
+    }
     
     
     return(
-        <>  
-        
-        {incorrectCount < 11 ? 
             <Container fluid>
             <Row>
                 <Col>
                     <Navbar/>
                 </Col>
             </Row>
-            
             <Row>
                 {displayWord}
             </Row>
@@ -90,18 +90,19 @@ const Hangman = () => {
             </Row>
             <Row>
                 <Col>
-                    <img src={require(`../images/state${incorrectCount + 1}.jpg`)}/>
+                    <img src={require(`../images/state${incorrectCount + 1}.jpg`)} alt='hangman'/>
+                    {outcome}
                 </Col>
             </Row>
-            <br></br>
-            <div>Incorrect count = {incorrectCount}</div> 
-            </Container>
-            : <div>Sorry you lost!</div>
-             }
-             {isGameWon && <h1>You Won!</h1>}
+            <br/>
+            <button onClick={() => {
+                restart();
+                showButtons();
+            }
+        }>Restart</button>
+            <div>Need Help? Click on menu and the Home in the dropdown list at top of the page, to see the instructions again.</div> 
             
-        
-        </>
+            </Container>
     )
 }
 

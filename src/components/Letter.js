@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Letter = (props) => {
 
-    //props.addCount(props.count + 1)
     
     return (
         <>

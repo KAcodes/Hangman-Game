@@ -10,6 +10,9 @@ The project was built using React and used logic to render different compnonents
 
 The aim of the game is simple: pick from the letters on the screen to try and guess the hidden word represented by the underscores. If the letter chosen is correct and in the hidden word then the letter will reveal its position. If the letter is incorrect then a line will be shown, which gradually progresses with each further incorrect guess, until a full image of a man being hung is revealed. If you manage to guess the word before the full image is shown, you win! However if you see the full "hangman" you have lost and must restart the game. Click on the dropdown to navigate to the game page. Enjoy!
 
+![image](https://user-images.githubusercontent.com/61561703/221225942-a079e522-3751-4c10-91eb-094a813b2899.png)
+
+
 ## How to install and run this project
 
 1) Open your terminal and navigate to the folder you want to install my project, then type

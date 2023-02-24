@@ -1,30 +1,31 @@
-# How to play the game
+# Hangman Game 
+
+## Project Description
+
+### About this project
+I was tasked with building a well-known simple interactive game application.
+The project was built using React and used logic to render different compnonents. React hooks were used to manage the states and props of components. 
+
+### How to play
 
 The aim of the game is simple: pick from the letters on the screen to try and guess the hidden word represented by the underscores. If the letter chosen is correct and in the hidden word then the letter will reveal its position. If the letter is incorrect then a line will be shown, which gradually progresses with each further incorrect guess, until a full image of a man being hung is revealed. If you manage to guess the word before the full image is shown, you win! However if you see the full "hangman" you have lost and must restart the game. Click on the dropdown to navigate to the game page. Enjoy!
 
-# Requirements to run react app
+## How to install and run this project
 
-You can clone this repository onto your local machine and then you will need to install several packages for the page to load properly, from command line:
+1) Open your terminal and navigate to the folder you want to install my project, then type
 
-- you will need to run `npm install` to download all dependencies
+  $ git clone https://github.com/KAcodes/Hangman-Game.git
 
-- you will need to run `npm i react-router-dom`
+  This clones the repo
 
-- you will need to run `npm react-bootstrap bootstrap`
+2) cd into the new folder and type
 
-# Getting Started with Create React App
+  $ npm install 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  This installs the required dependencies
 
-## Available Scripts
+3) To run the React project type 
 
-In the project directory, you can run:
+  $ npm start
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
+  The app will then run in development mode with path http://localhost:3000 in your browser.

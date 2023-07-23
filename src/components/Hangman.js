@@ -53,7 +53,7 @@ const Hangman = () => {
 
     //every letter in alphabet is mapped into a button which is displayed as an onscreen keyboard
     const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-'] 
-    const displayAlphabet = alphabet.map((letter, index) =>  <Col key={index}><Button type='button' className='alphabetBtn m-1 btn-light' onClick={guessLetter} key={index}>{letter}</Button></Col>)
+    const displayAlphabet = alphabet.map((letter, index) =>  <Col xs="2" key={index}><Button type='button' className='alphabetBtn m-1 btn-light' onClick={guessLetter} key={index}>{letter}</Button></Col>)
 
 
     //if restart is clicked then states are all set back to their original states
@@ -72,7 +72,7 @@ const Hangman = () => {
         hideButtons();
     };
     if (correctCount === displayWord.length && correctCount !== 0) {
-        outcome = <><h3>You Win!</h3><h5>Well done you correctly guessed the word! To try and win again click on the restart button.</h5></>
+        outcome = <><h3>You Win!</h3><h5>Well done you correctly guessed the word! To play again click on the restart button.</h5></>
         hideButtons();
     };
     
@@ -86,7 +86,8 @@ const Hangman = () => {
                 </Col>
                 <h1 className='text-center'>Hangman</h1>
             </Row>
-            <Row className='text-center my-4'>
+            <Row 
+             className='text-center my-4'>
                 {displayWord}
             </Row>
             <Row className='text-center' >  

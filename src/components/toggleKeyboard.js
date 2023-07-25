@@ -11,8 +11,21 @@ export const hideButtons = () => {
 export const showButtons = () => {
     let alphaButtons = document.querySelectorAll('.alphabetBtn')
     for (let i = 0; i < alphaButtons.length; i++) {
-        //console.log(alphaButtons[i].style.visibility)
          if (alphaButtons[i].style.visibility !== 'visible') { alphaButtons[i].style.visibility = 'visible';
         } 
     }
+}
+
+export const disableButtons = () => {
+    const buttons = document.getElementsByClassName("alphabetBtn");
+      for(let i=0;i < buttons.length; i++){
+        buttons[i].disabled = true
+     }
+}
+
+export const enableButtons = () => {
+    const buttons = document.getElementsByClassName("alphabetBtn");
+      for(let i=0;i < buttons.length; i++){
+        buttons[i].disabled = false
+     }
 }

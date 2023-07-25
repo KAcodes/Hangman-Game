@@ -1,4 +1,7 @@
 .App {
-  text-align: center;
+  text-align: center;  
 }
 
+.alphabetBtn {
+  min-width: 70px;
+}
